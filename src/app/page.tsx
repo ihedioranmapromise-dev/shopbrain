@@ -3,14 +3,16 @@ import {
   Bell,
   ChevronRight,
   Mic,
+  Package,
   ShieldCheck,
   Store,
   Wallet,
 } from "lucide-react";
-import { dayBrief, pending } from "@/lib/demo-data";
+import { dayBrief, pending, stock } from "@/lib/demo-data";
 
 export default function HomePage() {
   const waiting = pending.length;
+  const lowCount = stock.filter((s) => s.low).length;
 
   return (
     <main className="px-4 pt-6">
@@ -20,7 +22,7 @@ export default function HomePage() {
             Owner view
           </p>
           <h1 className="mt-1 text-2xl font-semibold tracking-tight">ShopBrain</h1>
-          <p className="mt-1 text-sm text-mute">Your shops. Your money. Your voice.</p>
+          <p className="mt-1 text-sm text-mute">Your shops. Your money. Your stock.</p>
         </div>
         <div className="flex h-10 w-10 items-center justify-center rounded-full border border-line bg-panel">
           <Bell size={18} className="text-mute" />
@@ -31,7 +33,8 @@ export default function HomePage() {
         <div className="border-b border-line bg-gradient-to-r from-accent/20 to-transparent px-4 py-3">
           <p className="text-xs text-mute">Partner brief · right now</p>
           <p className="mt-1 text-[15px] font-medium leading-snug">
-            {waiting} actions waiting your OK · money in today {dayBrief.moneyIn}
+            {waiting} need your OK · {lowCount} stock lines low · in today{" "}
+            {dayBrief.moneyIn}
           </p>
         </div>
         <div className="grid grid-cols-3 gap-px bg-line">
@@ -46,9 +49,9 @@ export default function HomePage() {
             <p className="text-[11px] text-mute">Need approve</p>
           </div>
           <div className="bg-panel px-3 py-3">
-            <Store size={16} className="text-accent" />
-            <p className="mt-2 text-lg font-semibold">{dayBrief.storesOpen}</p>
-            <p className="text-[11px] text-mute">Stores live</p>
+            <Package size={16} className="text-accent" />
+            <p className="mt-2 text-lg font-semibold">{lowCount}</p>
+            <p className="text-[11px] text-mute">Low stock</p>
           </div>
         </div>
       </section>
@@ -83,21 +86,33 @@ export default function HomePage() {
         </div>
       </section>
 
+      <div className="mb-4 grid grid-cols-2 gap-2">
+        <Link href="/stock" className="card flex flex-col gap-2 p-3">
+          <Package size={18} className="text-accent" />
+          <span className="text-sm font-medium">Stock board</span>
+          <span className="text-[11px] text-mute">Speak or snap adjust</span>
+        </Link>
+        <Link href="/instruct" className="card flex flex-col gap-2 p-3">
+          <Mic size={18} className="text-accent" />
+          <span className="text-sm font-medium">Instruct</span>
+          <span className="text-[11px] text-mute">Money or stock by voice</span>
+        </Link>
+      </div>
+
       <section className="card p-4">
-        <p className="text-xs font-medium uppercase tracking-wide text-mute">
-          Talk to ShopBrain
-        </p>
+        <div className="flex items-center gap-2 text-xs font-medium uppercase tracking-wide text-mute">
+          <Store size={12} /> Multi-store
+        </div>
         <p className="mt-1 text-sm text-[#c5cddc]">
-          Give an instruction by voice. Staff moves stay pending until you accept.
+          One account · staff post · you accept · end of day in one place.
         </p>
-        <Link href="/instruct" className="btn btn-primary mt-3 w-full">
-          <Mic size={16} />
-          Hold to instruct
+        <Link href="/stores" className="btn btn-ghost mt-3 w-full">
+          View stores
         </Link>
       </section>
 
       <p className="mt-6 text-center text-[11px] text-mute">
-        Demo · sample wholesale data · setup by you after YES
+        Demo · sample wholesale data · setup sold separately
       </p>
     </main>
   );

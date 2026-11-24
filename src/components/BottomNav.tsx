@@ -2,14 +2,14 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Home, Inbox, Mic, Store, Sunset } from "lucide-react";
+import { Home, Inbox, Mic, Package, Sunset } from "lucide-react";
 import clsx from "clsx";
 
 const items = [
   { href: "/", label: "Home", icon: Home },
   { href: "/pending", label: "Pending", icon: Inbox },
+  { href: "/stock", label: "Stock", icon: Package },
   { href: "/instruct", label: "Speak", icon: Mic },
-  { href: "/stores", label: "Stores", icon: Store },
   { href: "/brief", label: "Day", icon: Sunset },
 ];
 
@@ -17,9 +17,9 @@ export function BottomNav() {
   const path = usePathname();
   return (
     <nav className="fixed bottom-0 left-0 right-0 z-20 border-t border-line bg-ink/95 backdrop-blur-md">
-      <div className="mx-auto flex max-w-[430px] justify-between px-3 pb-[calc(0.5rem+env(safe-area-inset-bottom))] pt-2">
+      <div className="mx-auto flex max-w-[430px] justify-between px-2 pb-[calc(0.5rem+env(safe-area-inset-bottom))] pt-2">
         {items.map(({ href, label, icon: Icon }) => {
-          const active = path === href;
+          const active = path === href || (href !== "/" && path.startsWith(href));
           return (
             <Link
               key={href}
