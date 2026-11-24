@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Home, Inbox, Mic, Package, Sunset } from "lucide-react";
+import { Home, Inbox, Info, Mic, Package } from "lucide-react";
 import clsx from "clsx";
 
 const items = [
@@ -10,7 +10,7 @@ const items = [
   { href: "/pending", label: "Pending", icon: Inbox },
   { href: "/stock", label: "Stock", icon: Package },
   { href: "/instruct", label: "Speak", icon: Mic },
-  { href: "/brief", label: "Day", icon: Sunset },
+  { href: "/about", label: "About", icon: Info },
 ];
 
 export function BottomNav() {

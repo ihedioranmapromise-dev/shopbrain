@@ -2,6 +2,7 @@ import Link from "next/link";
 import {
   Bell,
   ChevronRight,
+  Info,
   Mic,
   Package,
   ShieldCheck,
@@ -24,9 +25,12 @@ export default function HomePage() {
           <h1 className="mt-1 text-2xl font-semibold tracking-tight">ShopBrain</h1>
           <p className="mt-1 text-sm text-mute">Your shops. Your money. Your stock.</p>
         </div>
-        <div className="flex h-10 w-10 items-center justify-center rounded-full border border-line bg-panel">
-          <Bell size={18} className="text-mute" />
-        </div>
+        <Link
+          href="/about"
+          className="flex h-10 w-10 items-center justify-center rounded-full border border-line bg-panel"
+        >
+          <Info size={18} className="text-mute" />
+        </Link>
       </header>
 
       <section className="card mb-4 overflow-hidden">
@@ -78,6 +82,7 @@ export default function HomePage() {
                 <p className="truncate text-xs text-mute">
                   {p.staff} · {p.time}
                   {p.amount ? ` · ${p.amount}` : ""}
+                  {p.payTag ? ` · ${p.payTag}` : ""}
                 </p>
               </div>
               <ChevronRight size={16} className="text-mute" />
@@ -92,10 +97,10 @@ export default function HomePage() {
           <span className="text-sm font-medium">Stock board</span>
           <span className="text-[11px] text-mute">Speak or snap adjust</span>
         </Link>
-        <Link href="/instruct" className="card flex flex-col gap-2 p-3">
-          <Mic size={18} className="text-accent" />
-          <span className="text-sm font-medium">Instruct</span>
-          <span className="text-[11px] text-mute">Money or stock by voice</span>
+        <Link href="/about" className="card flex flex-col gap-2 p-3">
+          <Info size={18} className="text-accent" />
+          <span className="text-sm font-medium">Why ShopBrain</span>
+          <span className="text-[11px] text-mute">Benefits & onboarding</span>
         </Link>
       </div>
 
@@ -104,7 +109,7 @@ export default function HomePage() {
           <Store size={12} /> Multi-store
         </div>
         <p className="mt-1 text-sm text-[#c5cddc]">
-          One account · staff post · you accept · end of day in one place.
+          One account · staff limited per shop · Accept needs PIN · export to your email.
         </p>
         <Link href="/stores" className="btn btn-ghost mt-3 w-full">
           View stores
@@ -112,7 +117,7 @@ export default function HomePage() {
       </section>
 
       <p className="mt-6 text-center text-[11px] text-mute">
-        Demo · sample wholesale data · setup sold separately
+        Demo · sample data · setup is the paid package
       </p>
     </main>
   );

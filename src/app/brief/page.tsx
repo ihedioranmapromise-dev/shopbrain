@@ -1,4 +1,5 @@
-import { AlertTriangle, Banknote, CheckCircle2 } from "lucide-react";
+import Link from "next/link";
+import { AlertTriangle, Banknote, CheckCircle2, Mail } from "lucide-react";
 import { dayBrief } from "@/lib/demo-data";
 
 export default function BriefPage() {
@@ -11,7 +12,7 @@ export default function BriefPage() {
         <p className="text-sm leading-relaxed text-[#dce3f0]">
           Today you took in <span className="font-semibold text-good">{dayBrief.moneyIn}</span> across{" "}
           {dayBrief.storesOpen} live stores. {dayBrief.depositsPending} deposits still need your OK.{" "}
-          {dayBrief.salesAccepted} sales already accepted.
+          {dayBrief.salesAccepted} sales already accepted. Stock only moved on accepted sales.
         </p>
       </div>
 
@@ -20,14 +21,14 @@ export default function BriefPage() {
           <Banknote className="shrink-0 text-good" size={20} />
           <div>
             <p className="font-medium">Money</p>
-            <p className="text-sm text-mute">Accepted in · {dayBrief.moneyIn}</p>
+            <p className="text-sm text-mute">Accepted in · {dayBrief.moneyIn} · tagged cash/transfer/credit</p>
           </div>
         </div>
         <div className="card flex gap-3 p-4">
           <CheckCircle2 className="shrink-0 text-accent" size={20} />
           <div>
             <p className="font-medium">Approvals</p>
-            <p className="text-sm text-mute">{dayBrief.depositsPending} still pending your voice or tap</p>
+            <p className="text-sm text-mute">{dayBrief.depositsPending} still pending · Accept uses owner PIN</p>
           </div>
         </div>
         <div className="card flex gap-3 p-4">
@@ -41,7 +42,20 @@ export default function BriefPage() {
             </ul>
           </div>
         </div>
+        <div className="card flex gap-3 p-4">
+          <Mail className="shrink-0 text-accent" size={20} />
+          <div>
+            <p className="font-medium">Weekly export</p>
+            <p className="text-sm text-mute">
+              Real app can email you balances & stock summary — your copy, your inbox.
+            </p>
+          </div>
+        </div>
       </div>
+
+      <Link href="/about" className="btn btn-ghost mt-5 w-full">
+        Everyday benefits & onboarding
+      </Link>
     </main>
   );
 }

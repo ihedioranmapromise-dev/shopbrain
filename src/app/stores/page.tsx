@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { MapPin, Users } from "lucide-react";
 import { stores } from "@/lib/demo-data";
 
@@ -8,7 +9,7 @@ export default function StoresPage() {
       <p className="mt-1 text-sm text-mute">One account · end of day syncs together</p>
 
       <div className="mt-5 space-y-3">
-        {stores.map((s) => (
+        {stores.map((s, i) => (
           <div key={s.id} className="card p-4">
             <div className="flex items-start justify-between">
               <div>
@@ -22,15 +23,21 @@ export default function StoresPage() {
               </span>
             </div>
             <div className="mt-3 flex items-center gap-2 text-xs text-mute">
-              <Users size={12} /> Staff can post · you approve money & stock
+              <Users size={12} />{" "}
+              {i === 0 ? "Ada · Seller (this shop only)" : i === 1 ? "Emeka · Seller (this shop only)" : "Blessing · Warehouse"}
             </div>
           </div>
         ))}
       </div>
 
       <div className="card mt-4 p-4 text-sm text-[#c5cddc]">
-        Setup includes naming stores, staff logins, and approval rules — that is the paid package.
+        Staff are limited to their store. They never see the full multi-shop picture — only the owner does.
+        Setup includes invites, PIN, and approval rules.
       </div>
+
+      <Link href="/about" className="btn btn-ghost mt-4 w-full">
+        How onboarding works
+      </Link>
     </main>
   );
 }

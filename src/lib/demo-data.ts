@@ -8,6 +8,7 @@ export type PendingItem = {
   title: string;
   detail: string;
   amount?: string;
+  payTag?: "cash" | "transfer" | "credit";
   voiceNote: boolean;
   voiceLabel: string;
   time: string;
@@ -95,6 +96,7 @@ export const pending: PendingItem[] = [
     title: "Deposit — Chinedu Okeke",
     detail: "Ankara mixed · 12 bolts · balance after deposit",
     amount: "₦50,000",
+    payTag: "transfer",
     voiceNote: true,
     voiceLabel: "Ada · 0:12 — Customer paid transfer, waiting balance 30k",
     time: "12 min ago",
@@ -105,8 +107,9 @@ export const pending: PendingItem[] = [
     store: "shop-b",
     staff: "Emeka",
     title: "Sale recorded",
-    detail: "Lace — 40 yards · cash",
+    detail: "Lace — 40 yards · goods out when you Accept",
     amount: "₦180,000",
+    payTag: "cash",
     voiceNote: true,
     voiceLabel: "Emeka · 0:08 — Full cash, goods leaving now",
     time: "34 min ago",
@@ -131,3 +134,24 @@ export const dayBrief = {
   lowStock: ["Ankara X (Shop A)", "Guipure white (Warehouse)", "Ankara mixed (Shop A)"],
   storesOpen: 2,
 };
+
+export const everydayBenefits = [
+  "One truth for money across every shop — not scattered WhatsApp chats",
+  "Staff work fast; nothing serious counts until you Accept",
+  "Voice on the action — hear what happened, not only text",
+  "Stock by store; speak or snap adjust still needs your OK",
+  "Accepted sales can drop stock — goods and money stay linked",
+  "Cash · transfer · credit tagged so collection matches real life",
+  "Day brief + optional weekly export to your email",
+  "Staff locked to their shop — they don’t see the whole empire",
+];
+
+export const onboardingSteps = [
+  { n: 1, title: "Your email", body: "Create owner account — magic link or password." },
+  { n: 2, title: "Business name", body: "The name staff and reports will show." },
+  { n: 3, title: "First store", body: "Name + address. Add more stores anytime." },
+  { n: 4, title: "Opening stock", body: "Rough lines from your phone — name, qty, unit, store." },
+  { n: 5, title: "Invite staff", body: "Name, phone/email, which store, role Seller. They get their own login." },
+  { n: 6, title: "Owner PIN", body: "Required on Accept — staff can’t use an unlocked owner phone." },
+  { n: 7, title: "You’re live", body: "Home shows pending, low stock, and day brief. Setup package finishes the polish." },
+];
