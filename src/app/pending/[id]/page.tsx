@@ -45,12 +45,20 @@ export default function PendingDetailPage() {
       <p className="mt-1 text-sm text-mute">{item.detail}</p>
 
       <div className="card mt-5 space-y-3 p-4">
-        <Row label="Staff" value={item.staff} />
+        <Row label="From" value={item.staff} />
         <Row label="Store" value={item.store.replace("-", " ")} />
         <Row label="When" value={item.time} />
+        <Row
+          label="Type"
+          value={
+            item.type === "customer"
+              ? "Customer order (private link)"
+              : item.type
+          }
+        />
         {item.amount && <Row label="Amount" value={item.amount} />}
         {payLabel && <Row label="Pay type" value={payLabel} />}
-        {item.type === "sale" && (
+        {(item.type === "sale" || item.type === "customer") && (
           <Row label="Stock" value="Drops only after Accept" />
         )}
       </div>
@@ -92,8 +100,8 @@ export default function PendingDetailPage() {
         <div className="card mt-6 p-4 text-center">
           <p className="font-medium">
             {done === "accepted"
-              ? item.type === "sale"
-                ? "Accepted — money in · stock reduced"
+              ? item.type === "sale" || item.type === "customer"
+                ? "Accepted — money path · stock reduced"
                 : "Accepted — books updated"
               : "Rejected — logged, no change"}
           </p>

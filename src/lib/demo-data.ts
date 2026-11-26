@@ -2,7 +2,7 @@ export type StoreId = "shop-a" | "shop-b" | "warehouse";
 
 export type PendingItem = {
   id: string;
-  type: "sale" | "deposit" | "stock";
+  type: "sale" | "deposit" | "stock" | "customer";
   store: StoreId;
   staff: string;
   title: string;
@@ -22,6 +22,8 @@ export type StockLine = {
   qty: string;
   unit: string;
   low: boolean;
+  sellable: boolean;
+  price?: string;
 };
 
 export const stores: { id: StoreId; name: string; city: string }[] = [
@@ -39,6 +41,8 @@ export const stock: StockLine[] = [
     qty: "14",
     unit: "bolts",
     low: true,
+    sellable: true,
+    price: "₦18,500 / bolt",
   },
   {
     id: "s2",
@@ -48,6 +52,8 @@ export const stock: StockLine[] = [
     qty: "6",
     unit: "bales",
     low: true,
+    sellable: true,
+    price: "₦95,000 / bale",
   },
   {
     id: "s3",
@@ -57,6 +63,8 @@ export const stock: StockLine[] = [
     qty: "120",
     unit: "yards",
     low: false,
+    sellable: true,
+    price: "₦4,200 / yard",
   },
   {
     id: "s4",
@@ -66,6 +74,8 @@ export const stock: StockLine[] = [
     qty: "28",
     unit: "bolts",
     low: false,
+    sellable: false,
+    price: "₦22,000 / bolt",
   },
   {
     id: "s5",
@@ -75,6 +85,8 @@ export const stock: StockLine[] = [
     qty: "3",
     unit: "bolts",
     low: true,
+    sellable: true,
+    price: "₦12,000 / bolt",
   },
   {
     id: "s6",
@@ -84,10 +96,25 @@ export const stock: StockLine[] = [
     qty: "45",
     unit: "yards",
     low: false,
+    sellable: true,
+    price: "₦2,800 / yard",
   },
 ];
 
 export const pending: PendingItem[] = [
+  {
+    id: "p0",
+    type: "customer",
+    store: "shop-a",
+    staff: "Buyer · Chinedu",
+    title: "Customer order — Chinedu Okeke",
+    detail: "Ankara mixed · 8 bolts · from private buyer link",
+    amount: "₦148,000",
+    payTag: "transfer",
+    voiceNote: false,
+    voiceLabel: "",
+    time: "just now (demo)",
+  },
   {
     id: "p1",
     type: "deposit",
@@ -144,14 +171,17 @@ export const everydayBenefits = [
   "Cash · transfer · credit tagged so collection matches real life",
   "Day brief + optional weekly export to your email",
   "Staff locked to their shop — they don’t see the whole empire",
+  "Private buyer link — customers see only sellable stock & prices",
+  "Customer orders land in the same Pending queue — you still Approve",
 ];
 
 export const onboardingSteps = [
   { n: 1, title: "Your email", body: "Create owner account — magic link or password." },
   { n: 2, title: "Business name", body: "The name staff and reports will show." },
   { n: 3, title: "First store", body: "Name + address. Add more stores anytime." },
-  { n: 4, title: "Opening stock", body: "Rough lines from your phone — name, qty, unit, store." },
+  { n: 4, title: "Opening stock", body: "Rough lines from your phone — name, qty, unit, store. Mark sellable when ready." },
   { n: 5, title: "Invite staff", body: "Name, phone/email, which store, role Seller. They get their own login." },
   { n: 6, title: "Owner PIN", body: "Required on Accept — staff can’t use an unlocked owner phone." },
-  { n: 7, title: "You’re live", body: "Home shows pending, low stock, and day brief. Setup package finishes the polish." },
+  { n: 7, title: "Buyer links (optional)", body: "Share a private link with trusted buyers so they order without WhatsApp chaos." },
+  { n: 8, title: "You’re live", body: "Home shows pending (staff + customers), low stock, and day brief." },
 ];

@@ -11,7 +11,7 @@ export default function StockPage() {
       <header className="mb-5">
         <h1 className="text-xl font-semibold">Stock</h1>
         <p className="mt-1 text-sm text-mute">
-          All stores · nothing moves without your OK
+          Sellable lines appear on the private buyer link
         </p>
       </header>
 
@@ -20,9 +20,7 @@ export default function StockPage() {
           <AlertTriangle className="shrink-0 text-warn" size={18} />
           <div>
             <p className="text-sm font-medium">{low.length} lines low</p>
-            <p className="text-xs text-mute">
-              {low.map((l) => l.name).join(" · ")}
-            </p>
+            <p className="text-xs text-mute">{low.map((l) => l.name).join(" · ")}</p>
           </div>
         </div>
       )}
@@ -52,24 +50,19 @@ export default function StockPage() {
               <p className="truncate text-sm font-medium">{s.name}</p>
               <p className="truncate text-[11px] text-mute">
                 {s.sku} · {storeName(s.store)}
+                {s.sellable ? " · sellable" : " · internal only"}
               </p>
             </div>
             <div className="text-right">
-              <p className={`text-sm font-semibold ${s.low ? "text-warn" : ""}`}>
-                {s.qty}
-              </p>
+              <p className={`text-sm font-semibold ${s.low ? "text-warn" : ""}`}>{s.qty}</p>
               <p className="text-[10px] text-mute">{s.unit}</p>
             </div>
           </div>
         ))}
       </div>
 
-      <p className="mt-5 text-center text-[11px] text-mute">
-        Speak or snap → pending → you accept. Sales can drop qty when accepted.
-      </p>
-
-      <Link href="/stores" className="mt-3 block text-center text-xs text-accent">
-        Manage stores
+      <Link href="/c" className="btn btn-ghost mt-5 w-full">
+        Preview what buyers see
       </Link>
     </main>
   );

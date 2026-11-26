@@ -1,11 +1,12 @@
 import Link from "next/link";
-import { ChevronRight, Mic, Package, Wallet } from "lucide-react";
+import { ChevronRight, Link2, Mic, Package, Wallet } from "lucide-react";
 import { pending } from "@/lib/demo-data";
 
 const iconFor = {
   deposit: Wallet,
   sale: Package,
   stock: Package,
+  customer: Link2,
 };
 
 export default function PendingPage() {
@@ -13,7 +14,7 @@ export default function PendingPage() {
     <main className="px-4 pt-6">
       <h1 className="text-xl font-semibold">Pending approvals</h1>
       <p className="mt-1 text-sm text-mute">
-        Nothing serious counts until you accept.
+        Staff and customer orders — nothing counts until you Accept.
       </p>
 
       <div className="mt-5 space-y-3">
@@ -22,7 +23,7 @@ export default function PendingPage() {
           return (
             <Link key={p.id} href={`/pending/${p.id}`} className="card block p-4">
               <div className="flex items-start gap-3">
-                <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-panel border border-line">
+                <div className="flex h-11 w-11 items-center justify-center rounded-xl border border-line bg-panel">
                   <Icon size={18} className="text-accent" />
                 </div>
                 <div className="min-w-0 flex-1">
@@ -31,6 +32,11 @@ export default function PendingPage() {
                     {p.voiceNote && (
                       <span className="inline-flex items-center gap-0.5 rounded-full bg-accent/15 px-1.5 py-0.5 text-[10px] text-accent">
                         <Mic size={10} /> Voice
+                      </span>
+                    )}
+                    {p.type === "customer" && (
+                      <span className="rounded-full bg-good/15 px-1.5 py-0.5 text-[10px] text-good">
+                        Buyer
                       </span>
                     )}
                   </div>

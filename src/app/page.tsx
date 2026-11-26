@@ -1,8 +1,8 @@
 import Link from "next/link";
 import {
-  Bell,
   ChevronRight,
   Info,
+  Link2,
   Mic,
   Package,
   ShieldCheck,
@@ -23,7 +23,7 @@ export default function HomePage() {
             Owner view
           </p>
           <h1 className="mt-1 text-2xl font-semibold tracking-tight">ShopBrain</h1>
-          <p className="mt-1 text-sm text-mute">Your shops. Your money. Your stock.</p>
+          <p className="mt-1 text-sm text-mute">Shops · money · stock · private buyers</p>
         </div>
         <Link
           href="/about"
@@ -75,14 +75,19 @@ export default function HomePage() {
               className="card flex items-center gap-3 px-3 py-3"
             >
               <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-warn/10 text-warn">
-                {p.voiceNote ? <Mic size={18} /> : <ShieldCheck size={18} />}
+                {p.type === "customer" ? (
+                  <Link2 size={18} />
+                ) : p.voiceNote ? (
+                  <Mic size={18} />
+                ) : (
+                  <ShieldCheck size={18} />
+                )}
               </div>
               <div className="min-w-0 flex-1">
                 <p className="truncate text-sm font-medium">{p.title}</p>
                 <p className="truncate text-xs text-mute">
                   {p.staff} · {p.time}
                   {p.amount ? ` · ${p.amount}` : ""}
-                  {p.payTag ? ` · ${p.payTag}` : ""}
                 </p>
               </div>
               <ChevronRight size={16} className="text-mute" />
@@ -97,22 +102,22 @@ export default function HomePage() {
           <span className="text-sm font-medium">Stock board</span>
           <span className="text-[11px] text-mute">Speak or snap adjust</span>
         </Link>
-        <Link href="/about" className="card flex flex-col gap-2 p-3">
-          <Info size={18} className="text-accent" />
-          <span className="text-sm font-medium">Why ShopBrain</span>
-          <span className="text-[11px] text-mute">Benefits & onboarding</span>
+        <Link href="/c" className="card flex flex-col gap-2 p-3">
+          <Link2 size={18} className="text-accent" />
+          <span className="text-sm font-medium">Buyer link</span>
+          <span className="text-[11px] text-mute">Private catalog demo</span>
         </Link>
       </div>
 
       <section className="card p-4">
         <div className="flex items-center gap-2 text-xs font-medium uppercase tracking-wide text-mute">
-          <Store size={12} /> Multi-store
+          <Store size={12} /> Multi-store + buyers
         </div>
         <p className="mt-1 text-sm text-[#c5cddc]">
-          One account · staff limited per shop · Accept needs PIN · export to your email.
+          Staff and private buyers write into one book. You Accept. Stock only moves when you say yes.
         </p>
-        <Link href="/stores" className="btn btn-ghost mt-3 w-full">
-          View stores
+        <Link href="/about" className="btn btn-ghost mt-3 w-full">
+          Benefits & onboarding
         </Link>
       </section>
 
