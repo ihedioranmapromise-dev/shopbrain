@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Check, Link2, Mail, Shield, Store } from "lucide-react";
+import { Check, Link2, Mail, Shield, Signal, Store, WifiOff } from "lucide-react";
 import { everydayBenefits, onboardingSteps } from "@/lib/demo-data";
 
 export default function AboutPage() {
@@ -12,6 +12,48 @@ export default function AboutPage() {
         <span className="text-white">money and stock truth</span> across stores, staff, and buyers.
         ShopBrain is a private desk: staff and customers can write in; nothing is real until you Accept.
       </p>
+
+      <section className="card mt-5 border-accent/30 p-4">
+        <div className="flex items-center gap-2">
+          <WifiOff size={16} className="text-accent" />
+          <h2 className="text-sm font-semibold">Weak network · still records</h2>
+        </div>
+        <p className="mt-2 text-sm text-[#c5cddc]">
+          Sales and deposits do <span className="text-white">not</span> need strong internet every second.
+          On the phone they save into a <span className="text-white">local queue</span>. When the network
+          returns — even for a moment — they sync to your desk. You still Accept. Nothing is lost because
+          the light blinked.
+        </p>
+        <ul className="mt-3 space-y-2 text-sm text-[#d5dbe8]">
+          <li className="flex gap-2">
+            <Signal size={14} className="mt-0.5 shrink-0 text-good" />
+            Staff can post sale / deposit offline or on bad data
+          </li>
+          <li className="flex gap-2">
+            <Signal size={14} className="mt-0.5 shrink-0 text-good" />
+            Queue shows “Waiting to sync” until the phone finds network
+          </li>
+          <li className="flex gap-2">
+            <Signal size={14} className="mt-0.5 shrink-0 text-good" />
+            After sync, it appears in your Pending — same as always
+          </li>
+        </ul>
+        <Link href="/reliability" className="btn btn-primary mt-3 w-full">
+          See how it works
+        </Link>
+      </section>
+
+      <section className="card mt-4 p-4">
+        <div className="flex items-center gap-2">
+          <Shield size={16} className="text-accent" />
+          <h2 className="text-sm font-semibold">You do not need to sit in the shop</h2>
+        </div>
+        <p className="mt-2 text-sm text-[#c5cddc]">
+          ShopBrain is built for the owner’s phone — home, market, travel, anywhere with a phone.
+          Staff work in the store. You see Pending and Accept (with PIN) from where you are.
+          Presence in the shop is optional, not required.
+        </p>
+      </section>
 
       <section className="card mt-5 p-4">
         <h2 className="text-sm font-semibold">Everyday benefits</h2>
@@ -28,16 +70,13 @@ export default function AboutPage() {
       <section className="card mt-5 p-4">
         <div className="flex items-center gap-2">
           <Link2 size={16} className="text-accent" />
-          <h2 className="text-sm font-semibold">Private customer face (new)</h2>
+          <h2 className="text-sm font-semibold">Private customer face</h2>
         </div>
         <p className="mt-2 text-sm text-[#c5cddc]">
-          Not a public online store. Trusted buyers get a <span className="text-white">private link</span>.
-          They only see stock you marked sellable, with their prices. When they order, it lands in{" "}
-          <span className="text-white">the same Pending queue</span> as staff — you still Approve with PIN.
-          Stock and money only move after you say yes. WhatsApp can still carry the link; the order
-          itself stops living only in chat.
+          Trusted buyers get a private link. They see only sellable stock. Orders land in the same
+          Pending queue — you still Approve. Not a public mall.
         </p>
-        <Link href="/c" className="btn btn-primary mt-3 w-full">
+        <Link href="/c" className="btn btn-ghost mt-3 w-full">
           Open sample buyer link
         </Link>
       </section>
@@ -65,27 +104,21 @@ export default function AboutPage() {
           <Shield size={16} className="mt-0.5 text-accent" />
           <div>
             <p className="text-sm font-medium">Staff never share owner password</p>
-            <p className="text-xs text-mute">
-              Invite per store. Seller only sees their shop. Accept needs owner PIN.
-            </p>
+            <p className="text-xs text-mute">Invite per store · Accept needs owner PIN</p>
           </div>
         </div>
         <div className="flex items-start gap-2">
           <Store size={16} className="mt-0.5 text-accent" />
           <div>
             <p className="text-sm font-medium">One book for staff and buyers</p>
-            <p className="text-xs text-mute">
-              Customer orders and staff sales both wait for you — same control model.
-            </p>
+            <p className="text-xs text-mute">Same control model — you stay the boss from anywhere</p>
           </div>
         </div>
         <div className="flex items-start gap-2">
           <Mail size={16} className="mt-0.5 text-accent" />
           <div>
             <p className="text-sm font-medium">Your data, exportable</p>
-            <p className="text-xs text-mute">
-              Business stays in your locked account. Weekly summary can go to your email.
-            </p>
+            <p className="text-xs text-mute">Weekly summary can go to your email</p>
           </div>
         </div>
       </section>
@@ -93,8 +126,8 @@ export default function AboutPage() {
       <Link href="/" className="btn btn-primary mt-5 w-full">
         Back to demo home
       </Link>
-      <Link href="/c" className="btn btn-ghost mt-2 w-full">
-        Try buyer view
+      <Link href="/reliability" className="btn btn-ghost mt-2 w-full">
+        Network & presence
       </Link>
     </main>
   );

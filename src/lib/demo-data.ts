@@ -12,6 +12,7 @@ export type PendingItem = {
   voiceNote: boolean;
   voiceLabel: string;
   time: string;
+  syncedFromOffline?: boolean;
 };
 
 export type StockLine = {
@@ -116,6 +117,20 @@ export const pending: PendingItem[] = [
     time: "just now (demo)",
   },
   {
+    id: "p4",
+    type: "sale",
+    store: "shop-b",
+    staff: "Emeka",
+    title: "Sale · synced after offline",
+    detail: "Lace 20 yards · recorded on shop phone with no signal, then synced",
+    amount: "₦84,000",
+    payTag: "cash",
+    voiceNote: true,
+    voiceLabel: "Emeka · 0:06 — No network, saved on phone first",
+    time: "synced 2 min ago",
+    syncedFromOffline: true,
+  },
+  {
     id: "p1",
     type: "deposit",
     store: "shop-a",
@@ -165,6 +180,8 @@ export const dayBrief = {
 export const everydayBenefits = [
   "One truth for money across every shop — not scattered WhatsApp chats",
   "Staff work fast; nothing serious counts until you Accept",
+  "Works on weak network — sales save on the phone, then sync",
+  "You do not need to sit in the shop — Accept from anywhere",
   "Voice on the action — hear what happened, not only text",
   "Stock by store; speak or snap adjust still needs your OK",
   "Accepted sales can drop stock — goods and money stay linked",
@@ -183,5 +200,5 @@ export const onboardingSteps = [
   { n: 5, title: "Invite staff", body: "Name, phone/email, which store, role Seller. They get their own login." },
   { n: 6, title: "Owner PIN", body: "Required on Accept — staff can’t use an unlocked owner phone." },
   { n: 7, title: "Buyer links (optional)", body: "Share a private link with trusted buyers so they order without WhatsApp chaos." },
-  { n: 8, title: "You’re live", body: "Home shows pending (staff + customers), low stock, and day brief." },
+  { n: 8, title: "You’re live", body: "Home shows pending (staff + customers), low stock, and day brief — from anywhere." },
 ];

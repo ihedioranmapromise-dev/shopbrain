@@ -6,6 +6,7 @@ import {
   Mic,
   Package,
   ShieldCheck,
+  Signal,
   Store,
   Wallet,
 } from "lucide-react";
@@ -20,10 +21,10 @@ export default function HomePage() {
       <header className="mb-6 flex items-start justify-between">
         <div>
           <p className="text-xs font-medium uppercase tracking-[0.14em] text-mute">
-            Owner view
+            Owner view · works from anywhere
           </p>
           <h1 className="mt-1 text-2xl font-semibold tracking-tight">ShopBrain</h1>
-          <p className="mt-1 text-sm text-mute">Shops · money · stock · private buyers</p>
+          <p className="mt-1 text-sm text-mute">Shops · money · stock · weak network OK</p>
         </div>
         <Link
           href="/about"
@@ -68,14 +69,16 @@ export default function HomePage() {
           </Link>
         </div>
         <div className="space-y-2">
-          {pending.slice(0, 2).map((p) => (
+          {pending.slice(0, 3).map((p) => (
             <Link
               key={p.id}
               href={`/pending/${p.id}`}
               className="card flex items-center gap-3 px-3 py-3"
             >
               <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-warn/10 text-warn">
-                {p.type === "customer" ? (
+                {p.syncedFromOffline ? (
+                  <Signal size={18} />
+                ) : p.type === "customer" ? (
                   <Link2 size={18} />
                 ) : p.voiceNote ? (
                   <Mic size={18} />
@@ -97,10 +100,10 @@ export default function HomePage() {
       </section>
 
       <div className="mb-4 grid grid-cols-2 gap-2">
-        <Link href="/stock" className="card flex flex-col gap-2 p-3">
-          <Package size={18} className="text-accent" />
-          <span className="text-sm font-medium">Stock board</span>
-          <span className="text-[11px] text-mute">Speak or snap adjust</span>
+        <Link href="/reliability" className="card flex flex-col gap-2 p-3">
+          <Signal size={18} className="text-accent" />
+          <span className="text-sm font-medium">Network & presence</span>
+          <span className="text-[11px] text-mute">Offline queue · work anywhere</span>
         </Link>
         <Link href="/c" className="card flex flex-col gap-2 p-3">
           <Link2 size={18} className="text-accent" />
@@ -111,13 +114,13 @@ export default function HomePage() {
 
       <section className="card p-4">
         <div className="flex items-center gap-2 text-xs font-medium uppercase tracking-wide text-mute">
-          <Store size={12} /> Multi-store + buyers
+          <Store size={12} /> Multi-store + weak network
         </div>
         <p className="mt-1 text-sm text-[#c5cddc]">
-          Staff and private buyers write into one book. You Accept. Stock only moves when you say yes.
+          Sales save on the shop phone first. Sync when data returns. You Accept from anywhere — not only inside the shop.
         </p>
         <Link href="/about" className="btn btn-ghost mt-3 w-full">
-          Benefits & onboarding
+          Full benefits
         </Link>
       </section>
 
